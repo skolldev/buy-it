@@ -10,7 +10,7 @@ const userList: IUser[] = [
     firstName: "Alexander",
     lastName: "May",
     email: "hello@alexandermay.dev",
-    password: "superunsafepassword",
+    password: "root",
     bankAccount: "111 222 333 444 5"
   }
 ];
@@ -41,10 +41,17 @@ export class APIService {
     return of(userList);
   }
 
+  /**
+   * Returns an array containing all products in the system
+   */
   public getAllProducts(): Observable<IProduct[]> {
     return of(this.products);
   }
 
+  /**
+   * Returns the specific product with the given id
+   * @param id The unique identifier of the product
+   */
   public getProductById(id: number): Observable<IProduct> {
     return this.getAllProducts().pipe(
       map(products => products.find(product => product.id === id))
