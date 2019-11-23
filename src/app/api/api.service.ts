@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { IUser } from "./models/user.interface";
 import { IProduct } from "./models/product.interface";
 import * as faker from "faker";

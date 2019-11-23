@@ -1,0 +1,52 @@
+<nav
+  class="flex items-center justify-between flex-wrap bg-white p-4 h-16 shadow-lg fixed w-full"
+>
+  <div class="ml-2 flex items-center flex-shrink-0 text-purple-600">
+    <span class="font-semibold text-xl">BuyIt</span>
+  </div>
+  <div class="flex">
+    <button
+      class="border px-4 py-1 border-purple-600 bg-white hover:bg-purple-600 hover:text-white active:bg-purple-700 active:text-white rounded-full"
+      *ngIf="!auth.isLoggedIn"
+      (click)="showLoginForm = true"
+      appClickStopPropagation
+    >
+      Login
+    </button>
+  </div>
+</nav>
+<div
+  id="loginPopup"
+  class="absolute bg-white p-4 right-0 flex flex-wrap flex-col shadow-lg z-10"
+  *ngIf="showLoginForm"
+  appClickOutside
+  (clickOutside)="showLoginForm = false"
+>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <label>
+      <span class="block">Email</span>
+      <input
+        autofocus
+        autocomplete="email"
+        type="email"
+        class="border border-purple-600 rounded-full p-1 px-3 bg-gray-100 mb-4"
+        formControlName="email"
+      />
+    </label>
+    <label>
+      <span class="block">Password</span>
+      <input
+        autocomplete="current-password"
+        type="password"
+        class="border border-purple-600 rounded-full p-1 px-3 bg-gray-100 mb-4"
+        formControlName="password"
+      />
+    </label>
+    <button
+      class="border px-4 py-1 border-purple-600 bg-white hover:bg-purple-600 hover:text-white active:bg-purple-700 active:text-white rounded-full block ml-auto"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
