@@ -29,7 +29,7 @@ const passwordsMatchValidator: ValidatorFn = (
 })
 export class AuthPageComponent implements OnInit {
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private notification: NotificationService,
     formBuilder: FormBuilder
   ) {
