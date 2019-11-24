@@ -5,16 +5,6 @@ import * as faker from "faker";
 import { Observable, of, pipe } from "rxjs";
 import { map } from "rxjs/operators";
 
-const userList: IUser[] = [
-  {
-    firstName: "Alexander",
-    lastName: "May",
-    email: "hello@alexandermay.dev",
-    password: "root",
-    bankAccount: "111 222 333 444 5"
-  }
-];
-
 @Injectable({
   providedIn: "root"
 })
@@ -24,6 +14,14 @@ export class APIService {
   }
 
   private products: IProduct[] = [];
+  private userList: IUser[] = [
+    {
+      name: "Alexander May",
+      email: "admin@system",
+      password: "root",
+      bankAccount: "111 222 333 444 5"
+    }
+  ];
   /**
    * Returns the user with the given email, or undefined if there is no such user.
    * @param email The email of the user
@@ -38,7 +36,16 @@ export class APIService {
    * Returns an array containing all users of the system
    */
   public getAllUsers(): Observable<IUser[]> {
-    return of(userList);
+    return of(this.userList);
+  }
+
+  /**
+   * Adds the user to the list of users in the system.
+   * No validation is done.
+   */
+  public addUser(user: IUser): Observable<boolean> {
+    this.userList.push(user);
+    return of(true);
   }
 
   /**

@@ -3,7 +3,8 @@ import { IUser } from "../api/models/user.interface";
 import { APIService } from "../api/api.service";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { Observable } from "rxjs";
-import { tap, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
+import { NotificationService } from "../components/notification.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,11 +20,14 @@ export class AuthService implements OnDestroy {
    */
   public currentUser: IUser;
 
-  constructor(private api: APIService) {}
+  constructor(
+    private api: APIService,
+    private notification: NotificationService
+  ) {}
 
   /**
    * Tries to login the user with the given credentials.
-   * Will (currently) log to the console if the login failed
+   * Will display a snackbar showing whether the login was successful
    * @param email The email of the user to login
    * @param password The password of the user to login
    */
@@ -32,20 +36,46 @@ export class AuthService implements OnDestroy {
       untilDestroyed(this),
       map(user => {
         if (!user) {
-          console.log("Login failed");
+          this.notification.notify("Login failed");
           return false;
         }
         const loginSuccessful = user.password === password;
         if (!loginSuccessful) {
-          console.log("Login failed");
+          this.notification.notify("Login failed");
           return false;
         }
 
         this.currentUser = user;
         this.isLoggedIn = true;
+        this.notification.notify("Login successful");
         return true;
       })
     );
+  }
+
+  /**
+   * Tries to create a new account for the user with the given information.
+   * Will fail if a user with the given email already exists.
+   * @param newUser The user information to create a new account for.
+   */
+  public register(newUser: IUser) {
+    this.api
+      .getUserByEmail(newUser.email)
+      .pipe(untilDestroyed(this))
+      .subscribe(user => {
+        if (user) {
+          this.notification.notify("A user with this email already exists.");
+        }
+
+        this.api
+          .addUser(newUser)
+          .pipe(untilDestroyed(this))
+          .subscribe(result => {
+            this.notification.notify(
+              "Successfully registered. You can now login."
+            );
+          });
+      });
   }
 
   /**

@@ -1,0 +1,101 @@
+<div class="flex justify-center">
+  <mat-tab-group class="w-full">
+    <mat-tab label="Already got an account?">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="flex flex-col items-center pt-4">
+          <label>
+            <span class="block">Email</span>
+            <input
+              autofocus
+              autocomplete="email"
+              type="email"
+              class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100 mb-4"
+              formControlName="email"
+            />
+          </label>
+          <label>
+            <span class="block">Password</span>
+            <input
+              autocomplete="current-password"
+              type="password"
+              class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100 mb-4"
+              formControlName="password"
+            />
+          </label>
+          <div class="flex">
+            <button
+              class="border w-32 py-2 border-purple-600 bg-purple-600 text-white hover:bg-purple-500 hover:border-purple-500 active:bg-purple-700 active:border-purple-700 rounded-full"
+              type="submit"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Create an account">
+      <form [formGroup]="createForm" (ngSubmit)="onSignUp()">
+        <div class="flex flex-wrap flex-col items-center pt-4">
+          <div class="flex flex-col sm:flex-row mb-4">
+            <label>
+              <span class="block">Name</span>
+              <input
+                autofocus
+                autocomplete="name"
+                type="email"
+                class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100 mb-4 sm:mb-0 sm:mr-4"
+                formControlName="name"
+              />
+            </label>
+            <label>
+              <span class="block">Email</span>
+              <input
+                autocomplete="email"
+                type="email"
+                class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100"
+                formControlName="email"
+              />
+            </label>
+          </div>
+          <div class="flex flex-col sm:flex-row mb-4">
+            <label>
+              <span class="block">Password</span>
+              <input
+                autocomplete="current-password"
+                type="password"
+                class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100 mb-4 sm:mb-0 sm:mr-4"
+                formControlName="password"
+              />
+            </label>
+            <label>
+              <span class="block">Confirm Password</span>
+              <input
+                type="password"
+                class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100"
+                formControlName="confirmPassword"
+              />
+            </label>
+          </div>
+
+          <label>
+            <span class="block">Bank account</span>
+            <input
+              autocomplete="cc-number"
+              class="border border-purple-600 rounded-full p-2 px-4 bg-gray-100 mb-4"
+              formControlName="bankAccount"
+            />
+          </label>
+
+          <div class="flex">
+            <button
+              class="border w-32 py-2 border-purple-600 bg-purple-600 text-white hover:bg-purple-500 hover:border-purple-500 active:bg-purple-700 active:border-purple-700 rounded-full"
+              type="submit"
+            >
+              Sign up
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+</div>
