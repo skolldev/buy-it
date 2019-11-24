@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 })
 export class APIService {
   constructor() {
-    this.createFakeProducts(30);
+    this.createFakeProducts(15);
   }
 
   private products: IProduct[] = [];
@@ -73,7 +73,8 @@ export class APIService {
         name: faker.hacker.noun(),
         description: faker.hacker.phrase(),
         price: +faker.commerce.price(),
-        stock: Math.random() * (40 - 5) + 5
+        stock: Math.floor(Math.random() * 24) + 1,
+        image: "assets/food-bread-cheese-sauce-product.jpg"
       });
       count--;
       id++;

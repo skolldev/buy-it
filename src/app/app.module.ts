@@ -12,6 +12,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ClickOutsideDirective } from "./directives/click-outside.directive";
 import { ClickStopPropagationDirective } from "./directives/click-stop-propagation.directive";
 import { AuthPageComponent } from "./auth/auth-page/auth-page.component";
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthPageComponent } from "./auth/auth-page/auth-page.component";
     NavbarComponent,
     ClickOutsideDirective,
     ClickStopPropagationDirective,
-    AuthPageComponent
+    AuthPageComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

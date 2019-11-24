@@ -1,0 +1,13 @@
+#hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/assets/background-food-vegetables-products.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.product {
+  transition: transform 200ms;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
