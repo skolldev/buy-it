@@ -1,6 +1,6 @@
 import { IProduct } from "./product.interface";
 
-export interface IAddToCartRequest {
+export interface ICartProduct {
   product: IProduct;
   amount: number;
 }

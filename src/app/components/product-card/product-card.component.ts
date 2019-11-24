@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { IProduct } from "src/app/api/models/product.interface";
-import { IAddToCartRequest } from "src/app/api/models/add-to-cart-request.interface";
+import { ICartProduct } from "src/app/api/models/cart-product.interface";
 
 @Component({
   selector: "app-product-card",
@@ -12,7 +12,7 @@ export class ProductCardComponent implements OnInit {
   public product: IProduct;
 
   @Output()
-  public addToCartClicked: EventEmitter<IAddToCartRequest> = new EventEmitter();
+  public addToCartClicked: EventEmitter<ICartProduct> = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
