@@ -2,8 +2,8 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { IUser } from "../api/models/user.interface";
 import { APIService } from "../api/api.service";
 import { untilDestroyed } from "ngx-take-until-destroy";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map, tap, mergeMap } from "rxjs/operators";
 import { NotificationService } from "../components/notification.service";
 
 @Injectable({
@@ -27,7 +27,10 @@ export class AuthService implements OnDestroy {
 
   /**
    * Tries to login the user with the given credentials.
+   *
    * Will display a snackbar showing whether the login was successful
+   *
+   * Also returns an observable containing the results of the login
    * @param email The email of the user to login
    * @param password The password of the user to login
    */
@@ -56,26 +59,28 @@ export class AuthService implements OnDestroy {
   /**
    * Tries to create a new account for the user with the given information.
    * Will fail if a user with the given email already exists.
+   * Returns an observable containing the success status
    * @param newUser The user information to create a new account for.
    */
   public register(newUser: IUser) {
-    this.api
-      .getUserByEmail(newUser.email)
-      .pipe(untilDestroyed(this))
-      .subscribe(user => {
+    return this.api.getUserByEmail(newUser.email).pipe(
+      untilDestroyed(this),
+      mergeMap(user => {
         if (user) {
           this.notification.notify("A user with this email already exists.");
+          return of(false);
         }
 
-        this.api
-          .addUser(newUser)
-          .pipe(untilDestroyed(this))
-          .subscribe(result => {
+        return this.api.addUser(newUser).pipe(
+          untilDestroyed(this),
+          tap(result => {
             this.notification.notify(
               "Successfully registered. You can now login."
             );
-          });
-      });
+          })
+        );
+      })
+    );
   }
 
   /**

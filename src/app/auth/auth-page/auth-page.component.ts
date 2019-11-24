@@ -91,7 +91,7 @@ export class AuthPageComponent implements OnInit {
       bankAccount: this.createForm.value.bankAccount
     };
 
-    this.auth.register(user);
+    this.auth.register(user).subscribe();
   }
 
   ngOnInit() {}

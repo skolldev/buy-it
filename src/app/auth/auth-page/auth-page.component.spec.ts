@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AuthPageComponent } from './auth-page.component';
+import { AuthPageComponent } from "./auth-page.component";
+import { AppModule } from "src/app/app.module";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 
-describe('AuthPageComponent', () => {
+describe("AuthPageComponent", () => {
   let component: AuthPageComponent;
   let fixture: ComponentFixture<AuthPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthPageComponent ]
-    })
-    .compileComponents();
+      imports: [AppModule],
+      providers: []
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('AuthPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

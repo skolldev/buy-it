@@ -13,6 +13,7 @@ import { ClickOutsideDirective } from "./directives/click-outside.directive";
 import { ClickStopPropagationDirective } from "./directives/click-stop-propagation.directive";
 import { AuthPageComponent } from "./auth/auth-page/auth-page.component";
 import { MainComponent } from './main/main.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MainComponent } from './main/main.component';
     ClickOutsideDirective,
     ClickStopPropagationDirective,
     AuthPageComponent,
-    MainComponent
+    MainComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
