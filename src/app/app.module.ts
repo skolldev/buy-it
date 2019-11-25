@@ -22,7 +22,7 @@ import {
 } from "ngx-perfect-scrollbar";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  wheelSpeed: 2
+  wheelSpeed: 1.5
 };
 
 @NgModule({
