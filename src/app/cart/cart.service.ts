@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ICartProduct } from "../api/models/cart-product.interface";
 import { IProduct } from "../api/models/product.interface";
+import { NotificationService } from "../components/notification.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,23 +13,45 @@ export class CartService {
   public currentCart: ICartProduct[] = [];
 
   /**
+   * Contains the current total amount of products in the cart
+   */
+  public amountOfProducts = 0;
+
+  /**
    * The total price of the cart, based on the products and their amounts
    */
   public currentTotal = 0;
 
-  constructor() {}
+  constructor(private notification: NotificationService) {}
 
   addToCart(product: IProduct, amount: number) {
     const existingProduct = this.currentCart.find(
       item => item.product.id === product.id
     );
+
+    if (product.stock >= amount) {
+      product.stock -= amount;
+      this.addProduct(existingProduct, product, amount);
+    } else {
+      this.addProduct(existingProduct, product, product.stock);
+      this.notification.notify(
+        `Not enough stock to add ${amount} ${product.name}(s) to the cart. ${product.stock} were added.`
+      );
+      product.stock = 0;
+    }
+    this.calculateTotals();
+  }
+
+  public addProduct(
+    existingProduct: ICartProduct,
+    newProduct: IProduct,
+    amount: number
+  ) {
     if (existingProduct) {
       existingProduct.amount += amount;
     } else {
-      this.currentCart.push({ product, amount });
+      this.currentCart.push({ product: newProduct, amount });
     }
-    product.stock -= amount;
-    this.calculateTotal();
   }
 
   removeFromCart(id: number) {
@@ -38,14 +61,16 @@ export class CartService {
     if (removalIndex !== -1) {
       const removedProduct = this.currentCart.splice(removalIndex, 1);
       removedProduct[0].product.stock += removedProduct[0].amount;
-      this.calculateTotal();
+      this.calculateTotals();
     }
   }
 
-  calculateTotal() {
+  calculateTotals() {
     this.currentTotal = 0;
+    this.amountOfProducts = 0;
     this.currentCart.forEach(item => {
       this.currentTotal += item.amount * item.product.price;
+      this.amountOfProducts += item.amount;
     });
   }
 }

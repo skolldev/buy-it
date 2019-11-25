@@ -9,5 +9,6 @@
   <app-product-card
     *ngFor="let product of products | async"
     [product]="product"
+    (addToCartClicked)="addToCart($event)"
   ></app-product-card>
 </div>

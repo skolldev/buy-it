@@ -4,10 +4,3 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-
-.product {
-  transition: transform 200ms;
-  &:hover {
-    transform: scale(1.05);
-  }
-}

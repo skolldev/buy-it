@@ -2,12 +2,16 @@ import { TestBed } from "@angular/core/testing";
 
 import { CartService } from "./cart.service";
 import { IProduct } from "../api/models/product.interface";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 describe("CartService", () => {
   let cartService: CartService;
   let testProduct: IProduct;
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [MatSnackBarModule, NoopAnimationsModule]
+    });
     cartService = TestBed.get(CartService);
     testProduct = {
       id: 1,
@@ -40,12 +44,18 @@ describe("CartService", () => {
     expect(cartService.currentTotal).toBe(0);
   });
 
-  it("should correctly handle stock", () => {
+  it("should correctly handle stock going up and down", () => {
     cartService.addToCart(testProduct, 1);
     expect(testProduct.stock).toBe(1);
     cartService.addToCart(testProduct, 1);
     expect(testProduct.stock).toBe(0);
     cartService.removeFromCart(testProduct.id);
     expect(testProduct.stock).toBe(2);
+  });
+
+  it("should avoid stock underflow :-)", () => {
+    cartService.addToCart(testProduct, 3);
+    expect(testProduct.stock).toBe(0);
+    expect(cartService.currentCart[0].amount).toBe(2);
   });
 });
