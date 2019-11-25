@@ -90,6 +90,7 @@
       <button
         class="border w-64 py-2 border-purple-600 bg-purple-600 text-white hover:bg-purple-500 hover:border-purple-500 active:bg-purple-700 active:border-purple-700 rounded-full"
         [disabled]="cart.currentCart.length === 0"
+        (click)="router.navigate(['/checkout'])"
       >
         Checkout
       </button>

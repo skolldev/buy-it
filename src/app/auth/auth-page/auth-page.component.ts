@@ -9,6 +9,7 @@ import {
 import { AuthService } from "../auth.service";
 import { NotificationService } from "src/app/components/notification.service";
 import { IUser } from "src/app/api/models/user.interface";
+import { RedirectService } from "../redirect.service";
 
 const passwordsMatchValidator: ValidatorFn = (
   control: FormGroup
@@ -31,6 +32,7 @@ export class AuthPageComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private notification: NotificationService,
+    private redirect: RedirectService,
     formBuilder: FormBuilder
   ) {
     this.loginForm = formBuilder.group({
@@ -69,7 +71,9 @@ export class AuthPageComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    this.auth.login(email, password).subscribe();
+    this.auth.login(email, password).subscribe(() => {
+      this.redirect.returnToLastURL();
+    });
   }
 
   /**
