@@ -1,3 +1,17 @@
-#loginPopup {
-  top: 58px;
+#cart-popup {
+  top: 64px;
+}
+
+#cart-content {
+  max-height: 19em;
+  position: relative;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cart-item:first-child {
+  border: none;
 }

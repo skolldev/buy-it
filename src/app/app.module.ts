@@ -12,8 +12,10 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ClickOutsideDirective } from "./directives/click-outside.directive";
 import { ClickStopPropagationDirective } from "./directives/click-stop-propagation.directive";
 import { AuthPageComponent } from "./auth/auth-page/auth-page.component";
-import { MainComponent } from './main/main.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import { MainComponent } from "./main/main.component";
+import { ProductCardComponent } from "./components/product-card/product-card.component";
+
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     BrowserAnimationsModule,
     MatDialogModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    PerfectScrollbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,5 +10,6 @@ import { CartService } from "src/app/cart/cart.service";
 export class NavbarComponent implements OnInit {
   constructor(public auth: AuthService, public cart: CartService) {}
 
+  public showCartPopup = false;
   ngOnInit() {}
 }
