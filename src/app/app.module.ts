@@ -15,7 +15,15 @@ import { AuthPageComponent } from "./auth/auth-page/auth-page.component";
 import { MainComponent } from "./main/main.component";
 import { ProductCardComponent } from "./components/product-card/product-card.component";
 
-import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
+import {
+  PerfectScrollbarModule,
+  PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG
+} from "ngx-perfect-scrollbar";
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  wheelSpeed: 2
+};
 
 @NgModule({
   declarations: [
@@ -37,7 +45,12 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
     MatSnackBarModule,
     PerfectScrollbarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
