@@ -27,75 +27,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public checkoutForm: FormGroup;
-  ngOnInit() {
-    this.cart.addToCart(
-      {
-        id: 1,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-
-    this.cart.addToCart(
-      {
-        id: 2,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-    this.cart.addToCart(
-      {
-        id: 3,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-    this.cart.addToCart(
-      {
-        id: 4,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-    this.cart.addToCart(
-      {
-        id: 5,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-    this.cart.addToCart(
-      {
-        id: 6,
-        name: "Coolcumber",
-        description: "Just a very cool cucumber",
-        stock: 2,
-        price: 150,
-        image: "/assets/food-bread-cheese-sauce-product.jpg"
-      },
-      2
-    );
-  }
+  ngOnInit() {}
 
   /**
    * Gets called when the user clicks on the Order button.

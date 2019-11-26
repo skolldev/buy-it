@@ -68,13 +68,14 @@ export class APIService {
   private createFakeProducts(count: number) {
     let id = 1;
     while (count) {
+      const imageNumber = Math.floor(Math.random() * 8);
       this.products.push({
         id,
         name: faker.hacker.noun(),
         description: faker.hacker.phrase(),
         price: +faker.commerce.price(),
         stock: Math.floor(Math.random() * 24) + 1,
-        image: "assets/food-bread-cheese-sauce-product.jpg"
+        image: `assets/food-q-c-400-240-${imageNumber}.jpg`
       });
       count--;
       id++;
