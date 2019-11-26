@@ -16,5 +16,10 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   public showCartPopup = false;
+
+  handleCheckout() {
+    this.showCartPopup = false;
+    this.router.navigate(["/checkout"]);
+  }
   ngOnInit() {}
 }

@@ -56,6 +56,7 @@ export class AuthPageComponent implements OnInit {
 
   public loginForm: FormGroup;
   public createForm: FormGroup;
+  public activeTab = 0;
 
   /**
    * Called when the user presses the login button.
@@ -95,7 +96,13 @@ export class AuthPageComponent implements OnInit {
       bankAccount: this.createForm.value.bankAccount
     };
 
-    this.auth.register(user).subscribe();
+    this.auth.register(user).subscribe(result => {
+      if (result) {
+        this.loginForm.controls.email.setValue(user.email);
+        this.createForm.reset();
+        this.activeTab = 0;
+      }
+    });
   }
 
   ngOnInit() {}
