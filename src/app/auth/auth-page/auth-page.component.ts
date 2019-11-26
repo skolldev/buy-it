@@ -56,11 +56,16 @@ export class AuthPageComponent implements OnInit {
 
   public loginForm: FormGroup;
   public createForm: FormGroup;
+
+  /**
+   * The currently active tab, 0 for login and 1 for sign up
+   */
   public activeTab = 0;
 
   /**
    * Called when the user presses the login button.
-   * Validates the form hand tries to login the user
+   * Validates the form and tries to login the user
+   * Will redirect him to the page that prompted a login afterwards
    */
   public onLogin() {
     if (this.loginForm.invalid) {

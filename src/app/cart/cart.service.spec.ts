@@ -58,4 +58,13 @@ describe("CartService", () => {
     expect(testProduct.stock).toBe(0);
     expect(cartService.currentCart[0].amount).toBe(2);
   });
+
+  it("should keep stock when confirming the order", () => {
+    cartService.addToCart(testProduct, 2);
+    cartService.confirmOrder();
+    expect(testProduct.stock).toBe(0);
+    expect(cartService.currentTotal).toBe(0);
+    expect(cartService.amountOfProducts).toBe(0);
+    expect(cartService.currentCart.length).toBe(0);
+  });
 });

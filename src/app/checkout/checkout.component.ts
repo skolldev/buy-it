@@ -97,6 +97,13 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
+  /**
+   * Gets called when the user clicks on the Order button.
+   *
+   * Will validate the form and start the actual ordering process.
+   * Assigns the user an order number, saves his checkout information to the session storage
+   * and redirects him to the confirmation page
+   */
   handleOrder() {
     if (this.checkoutForm.invalid) {
       this.checkoutForm.markAllAsTouched();
@@ -106,13 +113,12 @@ export class CheckoutComponent implements OnInit {
 
     // Do the actual order processing here
 
-    const { name, email, bankAccount } = this.auth.currentUser;
+    const { name, email } = this.auth.currentUser;
     const { street, city } = this.checkoutForm.value;
 
     const checkoutInfo: ICheckoutInfo = {
       name,
       email,
-      bankAccount,
       street,
       city
     };
@@ -123,7 +129,7 @@ export class CheckoutComponent implements OnInit {
       JSON.stringify(checkoutInfo)
     );
 
-    this.cart.resetCart();
+    this.cart.confirmOrder();
 
     this.router.navigate(["./confirmation"], {
       relativeTo: this.route,

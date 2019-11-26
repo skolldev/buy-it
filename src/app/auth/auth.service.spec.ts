@@ -4,7 +4,7 @@ import { AuthService } from "./auth.service";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { IUser } from "../api/models/user.interface";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { doesNotThrow } from "assert";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe("AuthService", () => {
   let authService: AuthService;
@@ -18,7 +18,11 @@ describe("AuthService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatSnackBarModule, NoopAnimationsModule]
+      imports: [
+        MatSnackBarModule,
+        NoopAnimationsModule,
+        RouterTestingModule.withRoutes([])
+      ]
     });
     authService = TestBed.get(AuthService);
   });
