@@ -75,7 +75,11 @@
     </div>
     <div id="order-summary-content" class="relative" perfectScrollbar>
       <div class="flex p-4" *ngFor="let item of cart.currentCart">
-        <img [src]="item.product.image" class="w-12 h-12 mr-4" />
+        <img
+          [src]="item.product.image"
+          class="w-12 h-12 mr-4"
+          alt="Picture of product"
+        />
         <div class="flex w-full items-center text-lg justify-between">
           <div class="flex flex-col">
             <span>{{ item.product.name }}</span>
