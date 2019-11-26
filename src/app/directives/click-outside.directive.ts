@@ -12,6 +12,7 @@ import {
 /**
  * Emits an event whenever an element except this one was clicked
  * Will not emit an event when the other element does not propagate its click event
+ * Code source: https://christianliebel.com/2016/05/angular-2-a-simple-click-outside-directive/
  */
 export class ClickOutsideDirective {
   @Output()
