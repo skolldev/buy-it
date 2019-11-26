@@ -1,5 +1,5 @@
 <div
-  class="p-4 flex flex-col-reverse lg:flex-row bg-gray-100 min-h-full justify-center"
+  class="p-4 flex flex-col-reverse lg:flex-row bg-gray-200 min-h-full justify-center"
 >
   <div
     class="flex flex-col items-center h-full w-full justify-center self-center"
@@ -13,5 +13,25 @@
       class="text-lg py-4 text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 w-64 text-center rounded-full"
       >Return to the start</a
     >
+  </div>
+
+  <div
+    *ngIf="this.information"
+    class="p-8 flex flex-col items-center bg-white shadow-lg rounded-lg self-center text-lg"
+  >
+    <h1 class="text-3xl border-b border-gray-400 w-full text-center pb-4 mb-4">
+      Order confirmation
+    </h1>
+
+    <h2>Order number: {{ orderNumber }}</h2>
+    <p>Thanks a lot for shopping with us!</p>
+    <p class="mb-4">Your order will be sent to the following address:</p>
+    <div class="text-left flex flex-col items-start mb-4">
+      <span>{{ information.name }}</span>
+      <span>{{ information.street }}</span>
+      <span>{{ information.city }}</span>
+    </div>
+    <p>We've sent you an order confirmation to your email</p>
+    <p>{{ information.email }}</p>
   </div>
 </div>

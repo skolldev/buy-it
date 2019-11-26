@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CheckoutDoneComponent } from './checkout-done.component';
+import { CheckoutDoneComponent } from "./checkout-done.component";
 
-describe('CheckoutDoneComponent', () => {
+describe("CheckoutDoneComponent", () => {
   let component: CheckoutDoneComponent;
   let fixture: ComponentFixture<CheckoutDoneComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckoutDoneComponent ]
-    })
-    .compileComponents();
+      declarations: [CheckoutDoneComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('CheckoutDoneComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

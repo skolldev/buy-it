@@ -11,10 +11,10 @@ export class CheckoutDoneComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   public information: ICheckoutInfo;
-
+  public orderNumber: number;
   ngOnInit() {
-    const orderNumber = this.route.snapshot.queryParams.orderNumber;
-    const orderInfo = sessionStorage.getItem(orderNumber);
+    this.orderNumber = +this.route.snapshot.queryParams.orderNumber;
+    const orderInfo = sessionStorage.getItem(this.orderNumber.toString());
     if (orderInfo) {
       this.information = JSON.parse(orderInfo);
     }
