@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 })
 export class APIService {
   constructor() {
-    this.createFakeProducts(15);
+    this.createFakeProducts(30);
   }
 
   private products: IProduct[] = [];
@@ -67,7 +67,7 @@ export class APIService {
 
   private createFakeProducts(count: number) {
     let id = 1;
-    while (count) {
+    while (count--) {
       const imageNumber = Math.floor(Math.random() * 8);
       this.products.push({
         id,
@@ -77,7 +77,6 @@ export class APIService {
         stock: Math.floor(Math.random() * 24) + 1,
         image: `assets/food-q-c-400-240-${imageNumber}.jpg`
       });
-      count--;
       id++;
     }
   }
