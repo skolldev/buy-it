@@ -5,6 +5,7 @@ import { untilDestroyed } from "ngx-take-until-destroy";
 import { Observable, of } from "rxjs";
 import { map, tap, mergeMap } from "rxjs/operators";
 import { NotificationService } from "../components/notification.service";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -18,11 +19,17 @@ export class AuthService implements OnDestroy {
   /**
    * Contains all data of the currently logged in user
    */
-  public currentUser: IUser;
+  public currentUser: IUser = {
+    name: "Alexander May",
+    email: "admin@system",
+    password: "root",
+    bankAccount: "111 222 333 444 5"
+  };
 
   constructor(
     private api: APIService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private router: Router
   ) {}
 
   /**
@@ -85,10 +92,12 @@ export class AuthService implements OnDestroy {
 
   /**
    * Sets the loggedIn status to false and clears the current user
+   * Navigates the user back to the start page
    */
   public logout() {
     this.currentUser = undefined;
     this.isLoggedIn = false;
+    this.router.navigate(["/"]);
   }
   ngOnDestroy(): void {}
 }

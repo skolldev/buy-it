@@ -28,6 +28,11 @@ body {
   button:focus {
     outline: none;
   }
+  input.ng-invalid.ng-touched {
+    background-color: #f8cbc4;
+    border-color: #e52f12;
+  }
+  
 }
 
 .ps__thumb-y {

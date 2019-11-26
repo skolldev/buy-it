@@ -5,7 +5,10 @@
   <h1 class="text-white text-5xl lg:text-6xl">BuyIt</h1>
   <h2 class="text-white text-3xl">A new shopping experience</h2>
 </div>
-<div id="product-list" class="flex flex-row flex-wrap justify-around">
+<div
+  id="product-list"
+  class="flex flex-row flex-wrap justify-around bg-gray-200"
+>
   <app-product-card
     *ngFor="let product of products | async"
     [product]="product"

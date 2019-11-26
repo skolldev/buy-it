@@ -22,9 +22,11 @@ export class CartService {
    */
   public currentTotal = 0;
 
+  public priceForShipping = 4;
+
   constructor(private notification: NotificationService) {}
 
-  addToCart(product: IProduct, amount: number) {
+  public addToCart(product: IProduct, amount: number) {
     const existingProduct = this.currentCart.find(
       item => item.product.id === product.id
     );
@@ -42,7 +44,23 @@ export class CartService {
     this.calculateTotals();
   }
 
-  public addProduct(
+  public removeFromCart(id: number) {
+    const removalIndex = this.currentCart.findIndex(
+      val => val.product.id === id
+    );
+    if (removalIndex !== -1) {
+      const removedProduct = this.currentCart.splice(removalIndex, 1);
+      removedProduct[0].product.stock += removedProduct[0].amount;
+      this.calculateTotals();
+    }
+  }
+
+  public resetCart() {
+    this.currentCart.length = 0;
+    this.calculateTotals();
+  }
+
+  private addProduct(
     existingProduct: ICartProduct,
     newProduct: IProduct,
     amount: number
@@ -54,18 +72,7 @@ export class CartService {
     }
   }
 
-  removeFromCart(id: number) {
-    const removalIndex = this.currentCart.findIndex(
-      val => val.product.id === id
-    );
-    if (removalIndex !== -1) {
-      const removedProduct = this.currentCart.splice(removalIndex, 1);
-      removedProduct[0].product.stock += removedProduct[0].amount;
-      this.calculateTotals();
-    }
-  }
-
-  calculateTotals() {
+  private calculateTotals() {
     this.currentTotal = 0;
     this.amountOfProducts = 0;
     this.currentCart.forEach(item => {
